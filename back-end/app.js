@@ -78,5 +78,28 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+app.get('/about', async (req, res) => {
+  try {
+    const aboutData = {
+      name: "Leo Zhou",
+      bio: [
+        "I'm Leo Zhou, senior from CAS, majoring in CS and DS"
+      ],
+      imageUrl: "https://ik.imagekit.io/xyhleo/leo.jpeg?updatedAt=1739911466387"
+    };
+    
+    res.json({
+      aboutData: aboutData,
+      status: 'all good',
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve about data',
+    });
+  }
+});
+
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
